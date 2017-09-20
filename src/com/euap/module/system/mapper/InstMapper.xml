@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.euap.module.system.mapper.InstMapper">
+
+    <resultMap id="BaseResultMap" type="com.euap.module.system.entity.Inst">
+        <result column="INST_ID" property="instId" jdbcType="VARCHAR"/>
+        <result column="INST_NAME" property="instName" jdbcType="VARCHAR"/>
+        <result column="INST_SMP_NAME" property="instSmpName" jdbcType="VARCHAR"/>
+        <result column="INST_PIYIN" property="instPiyin" jdbcType="VARCHAR"/>
+        <result column="PARENT_INST_ID" property="parentInstId" jdbcType="VARCHAR"/>
+        <result column="INST_REGION" property="instRegion" jdbcType="VARCHAR"/>
+        <result column="INST_PATH" property="instPath" jdbcType="VARCHAR"/>
+        <result column="ADDRESS" property="address" jdbcType="VARCHAR"/>
+        <result column="ZIP" property="zip" jdbcType="VARCHAR"/>
+        <result column="TEL" property="tel" jdbcType="VARCHAR"/>
+        <result column="FAX" property="fax" jdbcType="VARCHAR"/>
+        <result column="DESCRIPTION" property="description" jdbcType="VARCHAR"/>
+        <result column="ENABLED" property="enabled" jdbcType="VARCHAR"/>
+        <result column="DELETED" property="deleted" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        t1.INST_ID,t1.INST_NAME,t1.INST_SMP_NAME,t1.INST_PIYIN,t1.PARENT_INST_ID,t1.INST_REGION,t1.INST_PATH,t1.ADDRESS,t1.ZIP,t1.TEL,t1.FAX,t1.DESCRIPTION,t1.ENABLED,t1.DELETED
+    </sql>
+
+    <insert id="insert" parameterType="com.euap.module.system.entity.Inst" >
+        insert into BASE_INST (
+            INST_ID,
+            INST_NAME,
+            INST_SMP_NAME,
+            INST_PIYIN,
+            PARENT_INST_ID,
+            INST_REGION,
+            INST_PATH,
+            ADDRESS,
+            ZIP,
+            TEL,
+            FAX,
+            DESCRIPTION,
+            ENABLED,
+            DELETED
+        )
+        values (
+            #{instId,jdbcType=VARCHAR},
+            #{instName,jdbcType=VARCHAR},
+            #{instSmpName,jdbcType=VARCHAR},
+            #{instPiyin,jdbcType=VARCHAR},
+            #{parentInstId,jdbcType=VARCHAR},
+            #{instRegion,jdbcType=VARCHAR},
+            #{instPath,jdbcType=VARCHAR},
+            #{address,jdbcType=VARCHAR},
+            #{zip,jdbcType=VARCHAR},
+            #{tel,jdbcType=VARCHAR},
+            #{fax,jdbcType=VARCHAR},
+            #{description,jdbcType=VARCHAR},
+            #{enabled,jdbcType=VARCHAR},
+            #{deleted,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="map" >
+        delete from BASE_INST t1
+        where
+            t1.INST_ID = #{instId,jdbcType=VARCHAR}
+    </delete>
+
+    <delete id="delete"  parameterType="com.euap.module.system.entity.Inst">
+        delete from BASE_INST t1
+        <where>
+            <if test="instId != null and instId != ''">
+                and t1.INST_ID =#{instId,jdbcType=VARCHAR}
+            </if>
+            <if test="instName != null and instName != ''">
+                and t1.INST_NAME =#{instName,jdbcType=VARCHAR}
+            </if>
+            <if test="instSmpName != null and instSmpName != ''">
+                and t1.INST_SMP_NAME =#{instSmpName,jdbcType=VARCHAR}
+            </if>
+            <if test="instPiyin != null and instPiyin != ''">
+                and t1.INST_PIYIN =#{instPiyin,jdbcType=VARCHAR}
+            </if>
+            <if test="parentInstId != null and parentInstId != ''">
+                and t1.PARENT_INST_ID =#{parentInstId,jdbcType=VARCHAR}
+            </if>
+            <if test="instRegion != null and instRegion != ''">
+                and t1.INST_REGION =#{instRegion,jdbcType=VARCHAR}
+            </if>
+            <if test="instPath != null and instPath != ''">
+                and t1.INST_PATH =#{instPath,jdbcType=VARCHAR}
+            </if>
+            <if test="address != null and address != ''">
+                and t1.ADDRESS =#{address,jdbcType=VARCHAR}
+            </if>
+            <if test="zip != null and zip != ''">
+                and t1.ZIP =#{zip,jdbcType=VARCHAR}
+            </if>
+            <if test="tel != null and tel != ''">
+                and t1.TEL =#{tel,jdbcType=VARCHAR}
+            </if>
+            <if test="fax != null and fax != ''">
+                and t1.FAX =#{fax,jdbcType=VARCHAR}
+            </if>
+            <if test="description != null and description != ''">
+                and t1.DESCRIPTION =#{description,jdbcType=VARCHAR}
+            </if>
+            <if test="enabled != null and enabled != ''">
+                and t1.ENABLED =#{enabled,jdbcType=VARCHAR}
+            </if>
+            <if test="deleted != null and deleted != ''">
+                and t1.DELETED =#{deleted,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </delete>
+
+    <update id="updateByPrimaryKey" parameterType="com.euap.module.system.entity.Inst" >
+        update BASE_INST t1
+        set
+            t1.INST_ID = #{instId,jdbcType=VARCHAR},
+            t1.INST_NAME = #{instName,jdbcType=VARCHAR},
+            t1.INST_SMP_NAME = #{instSmpName,jdbcType=VARCHAR},
+            t1.INST_PIYIN = #{instPiyin,jdbcType=VARCHAR},
+            t1.PARENT_INST_ID = #{parentInstId,jdbcType=VARCHAR},
+            t1.INST_REGION = #{instRegion,jdbcType=VARCHAR},
+            t1.INST_PATH = #{instPath,jdbcType=VARCHAR},
+            t1.ADDRESS = #{address,jdbcType=VARCHAR},
+            t1.ZIP = #{zip,jdbcType=VARCHAR},
+            t1.TEL = #{tel,jdbcType=VARCHAR},
+            t1.FAX = #{fax,jdbcType=VARCHAR},
+            t1.DESCRIPTION = #{description,jdbcType=VARCHAR},
+            t1.ENABLED = #{enabled,jdbcType=VARCHAR},
+            t1.DELETED = #{deleted,jdbcType=VARCHAR}
+        where
+            t1.INST_ID = #{instId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.euap.module.system.entity.Inst" >
+        update BASE_INST t1
+        <set >
+            <if test="instId != null and instId != ''">
+                t1.INST_ID = #{instId,jdbcType=VARCHAR},
+            </if>
+            <if test="instName != null and instName != ''">
+                t1.INST_NAME = #{instName,jdbcType=VARCHAR},
+            </if>
+            <if test="instSmpName != null and instSmpName != ''">
+                t1.INST_SMP_NAME = #{instSmpName,jdbcType=VARCHAR},
+            </if>
+            <if test="instPiyin != null and instPiyin != ''">
+                t1.INST_PIYIN = #{instPiyin,jdbcType=VARCHAR},
+            </if>
+            <if test="parentInstId != null and parentInstId != ''">
+                t1.PARENT_INST_ID = #{parentInstId,jdbcType=VARCHAR},
+            </if>
+            <if test="instRegion != null and instRegion != ''">
+                t1.INST_REGION = #{instRegion,jdbcType=VARCHAR},
+            </if>
+            <if test="instPath != null and instPath != ''">
+                t1.INST_PATH = #{instPath,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null and address != ''">
+                t1.ADDRESS = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="zip != null and zip != ''">
+                t1.ZIP = #{zip,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null and tel != ''">
+                t1.TEL = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="fax != null and fax != ''">
+                t1.FAX = #{fax,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null and description != ''">
+                t1.DESCRIPTION = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="enabled != null and enabled != ''">
+                t1.ENABLED = #{enabled,jdbcType=VARCHAR},
+            </if>
+            <if test="deleted != null and deleted != ''">
+                t1.DELETED = #{deleted,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where
+            t1.INST_ID = #{instId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map" >
+        select
+		    <include refid="Base_Column_List" />
+        from BASE_INST t1
+        where
+            t1.INST_ID = #{instId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="count" resultType="Integer" parameterType="com.euap.module.system.entity.Inst">
+        select count(1) from BASE_INST t1
+        <where>
+            <if test="instId != null and instId != ''">
+                and t1.INST_ID = #{instId,jdbcType=VARCHAR}
+            </if>
+            <if test="instName != null and instName != ''">
+                and t1.INST_NAME = #{instName,jdbcType=VARCHAR}
+            </if>
+            <if test="instSmpName != null and instSmpName != ''">
+                and t1.INST_SMP_NAME = #{instSmpName,jdbcType=VARCHAR}
+            </if>
+            <if test="instPiyin != null and instPiyin != ''">
+                and t1.INST_PIYIN = #{instPiyin,jdbcType=VARCHAR}
+            </if>
+            <if test="parentInstId != null and parentInstId != ''">
+                and t1.PARENT_INST_ID = #{parentInstId,jdbcType=VARCHAR}
+            </if>
+            <if test="instRegion != null and instRegion != ''">
+                and t1.INST_REGION = #{instRegion,jdbcType=VARCHAR}
+            </if>
+            <if test="instPath != null and instPath != ''">
+                and t1.INST_PATH = #{instPath,jdbcType=VARCHAR}
+            </if>
+            <if test="address != null and address != ''">
+                and t1.ADDRESS = #{address,jdbcType=VARCHAR}
+            </if>
+            <if test="zip != null and zip != ''">
+                and t1.ZIP = #{zip,jdbcType=VARCHAR}
+            </if>
+            <if test="tel != null and tel != ''">
+                and t1.TEL = #{tel,jdbcType=VARCHAR}
+            </if>
+            <if test="fax != null and fax != ''">
+                and t1.FAX = #{fax,jdbcType=VARCHAR}
+            </if>
+            <if test="description != null and description != ''">
+                and t1.DESCRIPTION = #{description,jdbcType=VARCHAR}
+            </if>
+            <if test="enabled != null and enabled != ''">
+                and t1.ENABLED = #{enabled,jdbcType=VARCHAR}
+            </if>
+            <if test="deleted != null and deleted != ''">
+                and t1.DELETED = #{deleted,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="select" resultMap="BaseResultMap" parameterType="com.euap.module.system.entity.Inst">
+        select
+        <include refid="Base_Column_List"/>
+        from BASE_INST t1
+        <where>
+            <if test="record!=null and record.instId != null and record.instId != ''">
+                and t1.INST_ID = #{record.instId,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.instName != null and record.instName != ''">
+                and t1.INST_NAME = #{record.instName,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.instSmpName != null and record.instSmpName != ''">
+                and t1.INST_SMP_NAME = #{record.instSmpName,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.instPiyin != null and record.instPiyin != ''">
+                and t1.INST_PIYIN = #{record.instPiyin,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.parentInstId != null and record.parentInstId != ''">
+                and t1.PARENT_INST_ID = #{record.parentInstId,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.instRegion != null and record.instRegion != ''">
+                and t1.INST_REGION = #{record.instRegion,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.instPath != null and record.instPath != ''">
+                and t1.INST_PATH = #{record.instPath,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.address != null and record.address != ''">
+                and t1.ADDRESS = #{record.address,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.zip != null and record.zip != ''">
+                and t1.ZIP = #{record.zip,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.tel != null and record.tel != ''">
+                and t1.TEL = #{record.tel,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.fax != null and record.fax != ''">
+                and t1.FAX = #{record.fax,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.description != null and record.description != ''">
+                and t1.DESCRIPTION = #{record.description,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.enabled != null and record.enabled != ''">
+                and t1.ENABLED = #{record.enabled,jdbcType=VARCHAR}
+            </if>
+            <if test="record!=null and record.deleted != null and record.deleted != ''">
+                and t1.DELETED = #{record.deleted,jdbcType=VARCHAR}
+            </if>
+        </where>
+        <if test="order != null and order != ''">
+            order by ${order}
+        </if>
+    </select>
+
+
+</mapper>

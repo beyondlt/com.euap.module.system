@@ -11,12 +11,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>system</artifactId>
+
+
     <dependencies>
         <dependency>
             <groupId>com.euap</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
+
     </dependencies>
 
 
