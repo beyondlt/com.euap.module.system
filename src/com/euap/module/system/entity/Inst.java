@@ -31,8 +31,8 @@ public class Inst implements Serializable {
     private String instSmpName;
 
     /** 机构拼音 */
-    @PropertyDesc(value="机构拼音")
-    private String instPiyin;
+    @PropertyDesc(value="机构匹配查询")
+    private String instMatch;
 
     /** 上级ID */
     @PropertyDesc(value="上级ID")
@@ -105,13 +105,13 @@ public class Inst implements Serializable {
     }
 
     /** 机构拼音 */
-    public String getInstPiyin() {
-        return instPiyin;
+    public String getInstMatch() {
+        return instMatch;
     }
 
     /** 机构拼音 */
-    public void setInstPiyin(String instPiyin) {
-        this.instPiyin = instPiyin;
+    public void setInstMatch(String instMatch) {
+        this.instMatch = instMatch;
     }
 
     /** 上级ID */

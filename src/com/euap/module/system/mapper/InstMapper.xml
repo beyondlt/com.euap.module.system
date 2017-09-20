@@ -6,7 +6,7 @@
         <result column="INST_ID" property="instId" jdbcType="VARCHAR"/>
         <result column="INST_NAME" property="instName" jdbcType="VARCHAR"/>
         <result column="INST_SMP_NAME" property="instSmpName" jdbcType="VARCHAR"/>
-        <result column="INST_PIYIN" property="instPiyin" jdbcType="VARCHAR"/>
+        <result column="INST_MATCH" property="instMatch" jdbcType="VARCHAR"/>
         <result column="PARENT_INST_ID" property="parentInstId" jdbcType="VARCHAR"/>
         <result column="INST_REGION" property="instRegion" jdbcType="VARCHAR"/>
         <result column="INST_PATH" property="instPath" jdbcType="VARCHAR"/>
@@ -20,7 +20,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        t1.INST_ID,t1.INST_NAME,t1.INST_SMP_NAME,t1.INST_PIYIN,t1.PARENT_INST_ID,t1.INST_REGION,t1.INST_PATH,t1.ADDRESS,t1.ZIP,t1.TEL,t1.FAX,t1.DESCRIPTION,t1.ENABLED,t1.DELETED
+        t1.INST_ID,t1.INST_NAME,t1.INST_SMP_NAME,t1.INST_MATCH,t1.PARENT_INST_ID,t1.INST_REGION,t1.INST_PATH,t1.ADDRESS,t1.ZIP,t1.TEL,t1.FAX,t1.DESCRIPTION,t1.ENABLED,t1.DELETED
     </sql>
 
     <insert id="insert" parameterType="com.euap.module.system.entity.Inst" >
@@ -28,7 +28,7 @@
             INST_ID,
             INST_NAME,
             INST_SMP_NAME,
-            INST_PIYIN,
+            INST_MATCH,
             PARENT_INST_ID,
             INST_REGION,
             INST_PATH,
@@ -44,7 +44,7 @@
             #{instId,jdbcType=VARCHAR},
             #{instName,jdbcType=VARCHAR},
             #{instSmpName,jdbcType=VARCHAR},
-            #{instPiyin,jdbcType=VARCHAR},
+            #{instMatch,jdbcType=VARCHAR},
             #{parentInstId,jdbcType=VARCHAR},
             #{instRegion,jdbcType=VARCHAR},
             #{instPath,jdbcType=VARCHAR},
@@ -76,8 +76,8 @@
             <if test="instSmpName != null and instSmpName != ''">
                 and t1.INST_SMP_NAME =#{instSmpName,jdbcType=VARCHAR}
             </if>
-            <if test="instPiyin != null and instPiyin != ''">
-                and t1.INST_PIYIN =#{instPiyin,jdbcType=VARCHAR}
+            <if test="instMatch != null and instMatch != ''">
+                and t1.INST_MATCH =#{instMatch,jdbcType=VARCHAR}
             </if>
             <if test="parentInstId != null and parentInstId != ''">
                 and t1.PARENT_INST_ID =#{parentInstId,jdbcType=VARCHAR}
@@ -118,7 +118,7 @@
             t1.INST_ID = #{instId,jdbcType=VARCHAR},
             t1.INST_NAME = #{instName,jdbcType=VARCHAR},
             t1.INST_SMP_NAME = #{instSmpName,jdbcType=VARCHAR},
-            t1.INST_PIYIN = #{instPiyin,jdbcType=VARCHAR},
+            t1.INST_MATCH = #{instMatch,jdbcType=VARCHAR},
             t1.PARENT_INST_ID = #{parentInstId,jdbcType=VARCHAR},
             t1.INST_REGION = #{instRegion,jdbcType=VARCHAR},
             t1.INST_PATH = #{instPath,jdbcType=VARCHAR},
@@ -145,8 +145,8 @@
             <if test="instSmpName != null and instSmpName != ''">
                 t1.INST_SMP_NAME = #{instSmpName,jdbcType=VARCHAR},
             </if>
-            <if test="instPiyin != null and instPiyin != ''">
-                t1.INST_PIYIN = #{instPiyin,jdbcType=VARCHAR},
+            <if test="instMatch != null and instMatch != ''">
+                t1.INST_MATCH = #{instMatch,jdbcType=VARCHAR},
             </if>
             <if test="parentInstId != null and parentInstId != ''">
                 t1.PARENT_INST_ID = #{parentInstId,jdbcType=VARCHAR},
@@ -203,8 +203,8 @@
             <if test="instSmpName != null and instSmpName != ''">
                 and t1.INST_SMP_NAME = #{instSmpName,jdbcType=VARCHAR}
             </if>
-            <if test="instPiyin != null and instPiyin != ''">
-                and t1.INST_PIYIN = #{instPiyin,jdbcType=VARCHAR}
+            <if test="instMatch != null and instMatch != ''">
+                and t1.INST_MATCH like '%'|| #{instMatch,jdbcType=VARCHAR}||'%'
             </if>
             <if test="parentInstId != null and parentInstId != ''">
                 and t1.PARENT_INST_ID = #{parentInstId,jdbcType=VARCHAR}
@@ -253,8 +253,8 @@
             <if test="record!=null and record.instSmpName != null and record.instSmpName != ''">
                 and t1.INST_SMP_NAME = #{record.instSmpName,jdbcType=VARCHAR}
             </if>
-            <if test="record!=null and record.instPiyin != null and record.instPiyin != ''">
-                and t1.INST_PIYIN = #{record.instPiyin,jdbcType=VARCHAR}
+            <if test="record!=null and record.instMatch != null and record.instMatch != ''">
+                and t1.INST_MATCH = #{record.instMatch,jdbcType=VARCHAR}
             </if>
             <if test="record!=null and record.parentInstId != null and record.parentInstId != ''">
                 and t1.PARENT_INST_ID = #{record.parentInstId,jdbcType=VARCHAR}
@@ -291,6 +291,8 @@
             order by ${order}
         </if>
     </select>
-
+    <update id="updateInstPath">
+        udpate base_inst set inst_path=replace(inst_path,#{inst.instPath,jdbcType=VARCHAR},#{newInstPath,jdbcType=VARCHAR}) where inst_path like #{inst.instPath,jdbcType=VARCHAR}||'%'
+    </update>
 
 </mapper>

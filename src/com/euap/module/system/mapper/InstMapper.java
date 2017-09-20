@@ -60,4 +60,6 @@ public interface InstMapper {
      */
     List<Inst> select(RowBounds rowBounds, @Param("record") Inst record, @Param("order") String order);
 
+    void updateInstPath(@Param("inst")Inst inst,@Param("newInstPath")String newInstPath);
+
 }
