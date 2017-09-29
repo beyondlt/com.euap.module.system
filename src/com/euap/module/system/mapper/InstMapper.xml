@@ -254,7 +254,7 @@
                 and t1.INST_SMP_NAME = #{record.instSmpName,jdbcType=VARCHAR}
             </if>
             <if test="record!=null and record.instMatch != null and record.instMatch != ''">
-                and t1.INST_MATCH = #{record.instMatch,jdbcType=VARCHAR}
+                and t1.INST_MATCH LIKE '%'||#{record.instMatch,jdbcType=VARCHAR}||'%'
             </if>
             <if test="record!=null and record.parentInstId != null and record.parentInstId != ''">
                 and t1.PARENT_INST_ID = #{record.parentInstId,jdbcType=VARCHAR}
